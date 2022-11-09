@@ -41,7 +41,7 @@ function timeElapse(date){
 	var date_ini = new Date();
 	date_ini.setFullYear(2022);
 	date_ini.setMonth(1 - 1);
-	date_ini.setDate(15 - 1);
+	date_ini.setDate(15);
 	date_ini.setHours(0);
 	date_ini.setMinutes(0);
 	var date_ini  = date_ini.getTime() / 1000;
