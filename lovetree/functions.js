@@ -38,21 +38,24 @@ $(window).resize(function() {
 })(jQuery);
 
 function timeElapse(date){
-	var date_ini = new Date();
-	date_ini.setFullYear(2022);
-	date_ini.setMonth(1 - 1);
-	date_ini.setDate(15 - 1);
-	date_ini.setHours(23);
-	date_ini.setMinutes(55);
-	var date_ini  = date_ini.getTime() / 1000;
-    var today = new Date();
-    today = today.getTime() / 1000;
-    var diff  = Math.abs(today - date_ini);
-    var diff_hour = diff / (60 * 60);
-    var days = Math.round(diff_hour / 24);
-    var hours = Math.round((diff % (60 * 60 * 24)) / (60 * 60));
+	var current = Date();
+	var seconds = (Date.parse(current) - Date.parse(date)) / 1000;
+	var days = Math.floor(seconds / (3600 * 24));
+	seconds = seconds % (3600 * 24);
+	var hours = Math.floor(seconds / 3600);
+	if (hours < 10) {
+		hours = "0" + hours;
+	}
+	seconds = seconds % 3600;
+	var minutes = Math.floor(seconds / 60);
+	if (minutes < 10) {
+		minutes = "0" + minutes;
+	}
+	seconds = seconds % 60;
+	if (seconds < 10) {
+		seconds = "0" + seconds;
+	}
 
-
-	var result = "<span class=\"digit\">" + days + "</span> ngày <span class=\"digit\">" + hours + "</span> giờ";
+	var result = "<span class=\"digit\">" + days + "</span> ngày <span class=\"digit\">" + hours + "</span> giờ <span class=\"digit\">" + minutes + "</span> phút";
 	$("#clock").html(result);
 }
